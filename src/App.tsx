@@ -1,16 +1,22 @@
 import React from "react";
 import { useState } from "react";
-import "./App.css";
+//import "./App.css";
 
 // 1:10付近
 
 function App() {
+  // const  onSubmitHandler:React.FormEventHandler<HTMLFormElement> = (event) =>{
+
+  // }
+
+  const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {};
+
   return (
     <div>
       <h1>簡易Todoアプリ </h1>
 
       <div>
-        <form>
+        <form onSubmit={onSubmitHandler}>
           <label htmlFor="">
             タイトル:
             <input type="text" />
