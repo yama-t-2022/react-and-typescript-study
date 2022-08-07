@@ -33,6 +33,14 @@ function App() {
     };
   };
 
+  const createTodo2 = (id: string, title: string, completed): Todo => {
+    return {
+      id,
+      title,
+      completed,
+    };
+  };
+
   //(参考) 以下の形式の関数式でもOK
   // const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
 
@@ -88,7 +96,7 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          {todos.map((todo) => {
+          {todos.map((todo, index) => {
             return (
               <tr key={todo.id}>
                 <td>{todo.id}</td>
@@ -98,19 +106,11 @@ function App() {
                     type="checkbox"
                     checked={todo.completed}
                     onChange={(event) => {
-                      console.log(event.target.checked);
-                      console.log("TEST");
-                      const newTodos = todos.map((_todo) => {
-                        if (_todo.id === todo.id) {
-                          console.log("TEST2");
-                          return {
-                            ..._todo,
-                            completed: !todo.completed,
-                          };
-                        }
-                        return _todo;
-                      });
-
+                      //todosをクローン
+                      const newTodos = [...todos];
+                      //チェックボックの値で書き換え
+                      newTodos[index].completed = event.target.checked;
+                      //新しい配列で書き換え
                       setTodos(newTodos);
                     }}
                   ></input>
