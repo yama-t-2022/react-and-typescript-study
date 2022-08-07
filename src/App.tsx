@@ -5,12 +5,14 @@ import { v4 as uuidv4 } from "uuid";
 
 //import "./App.css";
 
+//ToDoデータ定義
 type Todo = {
   id: string;
   title: string;
   completed: boolean;
 };
 
+//ToDoデータ生成
 const createTodo = (title: string): Todo => {
   return {
     id: uuidv4(),
@@ -31,10 +33,12 @@ function App() {
     };
   };
 
+  //(参考) 以下の形式の関数式でもOK
   // const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
 
   // };
 
+  //作成ボタン押下時 イベント
   const onSubmitHandler: React.FormEventHandler<HTMLFormElement> = (event) => {
     //再読み込み時のイベント停止
     event.preventDefault();
@@ -42,15 +46,21 @@ function App() {
     //ログ表示
     console.log(todos);
 
+    //ToDoデータを生成後に設定
     const todo = createTodo(title);
     setTodos([...todos, todo]);
+
+    //クリア
     setTitle("");
   };
 
+  //タイトル変更時イベント
   const onchangeHandler: React.ChangeEventHandler<HTMLInputElement> = (
     event
   ) => {
     console.log(event.target.value);
+
+    //タイトルここで更新
     setTitle(event.target.value);
   };
 
